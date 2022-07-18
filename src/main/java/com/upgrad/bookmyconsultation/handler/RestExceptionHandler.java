@@ -67,7 +67,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler(InvalidInputException.class)
 	public ResponseEntity<ErrorResponse> handleInvalidInput(InvalidInputException e) {
-		return new ResponseEntity(errorResponse(e), HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<ErrorResponse>(errorResponse(e), HttpStatus.BAD_REQUEST);
 	}
 
 
@@ -76,6 +76,10 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 	//mark as ExceptionHandler for the class SlotUnavailableException
 	//create a method handleSlotUnavailableException with return type of ResponseEntity
 		//return http response for bad request with error code and a message
+	@ExceptionHandler(SlotUnavailableException.class)
+	public ResponseEntity<ErrorResponse> handleSlotUnavailableException(SlotUnavailableException e){
+		return new ResponseEntity<ErrorResponse>(errorResponse(e), HttpStatus.BAD_REQUEST);
+	}
 
 	private ErrorResponse errorResponse(final ApplicationException exc) {
 		exc.printStackTrace();
@@ -107,6 +111,19 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 		invalidInputException.printStackTrace(new PrintWriter(stringWriter));
 
 		String message = invalidInputException.getMessage();
+		if (message == null) {
+			message = GenericErrorCode.GEN_001.getDefaultMessage();
+		}
+		return new ErrorResponse().code(GenericErrorCode.GEN_001.getCode()).message(message).rootCause(stringWriter.getBuffer().toString());
+	}
+
+	private ErrorResponse errorResponse(final SlotUnavailableException slotUnavailableException) {
+		slotUnavailableException.printStackTrace();
+
+		final StringWriter stringWriter = new StringWriter();
+		slotUnavailableException.printStackTrace(new PrintWriter(stringWriter));
+
+		String message = slotUnavailableException.getMessage();
 		if (message == null) {
 			message = GenericErrorCode.GEN_001.getDefaultMessage();
 		}
