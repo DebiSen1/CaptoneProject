@@ -32,7 +32,7 @@ public class RatingsService {
 			rating.setId(id);
 			ratingsRepository.save(rating);
 			String doctorId = rating.getDoctorId();
-			Doctor doctor = doctorRepository.findDoctorById(doctorId);
+			Doctor doctor = doctorRepository.findById(doctorId).orElse(new Doctor());
 			doctor.setRating(rating.getRating());
 			doctorRepository.save(doctor);
 		}

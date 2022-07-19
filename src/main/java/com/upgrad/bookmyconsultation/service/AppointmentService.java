@@ -15,9 +15,6 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class AppointmentService {
-
-	
-	
 	//mark it autowired
 	//create an instance of AppointmentRepository called appointmentRepository
 	@Autowired
@@ -56,7 +53,7 @@ public class AppointmentService {
 		public Appointment getAppointment(String appointmentId) {
 			Appointment appointment=null;
 			if(appointmentRepository.findById(appointmentId)!=null){
-				appointment = appointmentRepository.getAppointmentDetails(appointmentId);
+				appointment = appointmentRepository.findById(appointmentId).orElse(new Appointment());
 				return appointment;
 			}
 			else{

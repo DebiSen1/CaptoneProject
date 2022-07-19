@@ -8,16 +8,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import java.util.UUID;
 
 @Data
 @Entity
+@Table(name = "doctor")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,7 +29,9 @@ import java.util.UUID;
 public class Doctor {
 	@Id
 	private String id = UUID.randomUUID().toString();
+	@Column(name = "first_name")
 	private String firstName;
+	@Column(name = "last_name")
 	private String lastName;
 	@Enumerated(EnumType.STRING)
 	private Speciality speciality;
@@ -34,12 +40,17 @@ public class Doctor {
 	@JoinColumn(name = "id")
 	private Address address;
 	private String mobile;
+	@Column(name = "email_id")
 	private String emailId;
 	private String pan;
+	@Column(name = "highest_qualification")
 	private String highestQualification;
 	private String college;
+	@Column(name = "total_years_of_exp")
 	private Integer totalYearsOfExp;
 	private Double rating;
+
+	
 	public String getId() {
 		return id;
 	}

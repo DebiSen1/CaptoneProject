@@ -73,7 +73,7 @@ public class DoctorService {
 		if(doctorRepository.findById(id)==null){
 			throw new ResourceUnAvailableException();
 		}
-		return doctorRepository.findDoctorById(id);
+		return doctorRepository.findById(id).orElse(new Doctor());
 	}
 	
 

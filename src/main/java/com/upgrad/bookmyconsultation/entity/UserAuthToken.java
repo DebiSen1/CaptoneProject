@@ -19,6 +19,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 import java.time.ZonedDateTime;
 
 
@@ -27,6 +29,7 @@ import java.time.ZonedDateTime;
  **/
 @Data
 @Entity
+@Table(name = "user_auth_token")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -42,9 +45,12 @@ public class UserAuthToken {
 	@Column(name = "ACCESS_TOKEN", length = 1000)
 	private String accessToken;
 
+	@Column(name = "login_at")
 	private ZonedDateTime loginAt;
-
+	@Column(name = "expires_at")
 	private ZonedDateTime expiresAt;
-
+	@Column(name = "logout_at")
 	private ZonedDateTime logoutAt;
+
+
 }

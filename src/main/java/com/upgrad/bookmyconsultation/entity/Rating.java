@@ -3,17 +3,23 @@ package com.upgrad.bookmyconsultation.entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
 import java.util.UUID;
 
 @Data
 @Entity
+@Table(name = "rating")
 @NoArgsConstructor
 public class Rating{
 	@Id
 	private String id = UUID.randomUUID().toString();
+	@Column(name = "appointment_id")
 	private String appointmentId;
+	@Column(name = "doctor_id")
 	private String doctorId;
 	private double rating;
 	private String comments;
