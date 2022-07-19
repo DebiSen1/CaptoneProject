@@ -27,7 +27,7 @@ public class AppointmentController {
 	
 		//save the appointment details to the database and save the response from the method used
 		//return http response using ResponseEntity
-	@RequestMapping(value="/appointments", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/appointments", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> bookAppointment(@RequestBody Appointment appointment){
 		try{
 			String appointmentId = appointmentService.createAppointment(appointment);	

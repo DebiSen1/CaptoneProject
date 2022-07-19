@@ -1,12 +1,10 @@
 package com.upgrad.bookmyconsultation.controller;
 
-import com.upgrad.bookmyconsultation.entity.Appointment;
 import com.upgrad.bookmyconsultation.entity.User;
 import com.upgrad.bookmyconsultation.exception.InvalidInputException;
 import com.upgrad.bookmyconsultation.service.AppointmentService;
 import com.upgrad.bookmyconsultation.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
